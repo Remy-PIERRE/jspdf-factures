@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Jean-Fréderic Vincent",
+    "adress": {
+      "street": "1 avenue inconnue",
+      "cp": "10000",
+      "city": "Quelque part",
+      "country": "France"
+    },
+    "tel": "(+33)6 01 02 03 04",
+    "email": "email@exemple.com",
+    "url": "https://unsiteparexemple.com",
+    "images": {
+      "name": "sevenValley_name.png",
+      "logo": "sevenValley_logo.png",
+      "signature": "sign_specimen.png"
+    }
+  },
+  {
+    "id": "2",
+    "name": "Rémy Pierre",
+    "adress": {
+      "street": "1 avenue inconnue",
+      "cp": "10000",
+      "city": "Quelque part",
+      "country": "France"
+    },
+    "tel": "(+33)6 01 02 03 04",
+    "email": "email@exemple.com",
+    "url": "https://unsiteparexemple.com",
+    "images": {
+      "name": "sevenValley_name.png",
+      "logo": "sevenValley_logo.png",
+      "signature": "sign_specimen.png"
+    }
+  }
+]

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factures - JsPdf</title>
+    <link rel="stylesheet" href="./styles/global.css" />
+  </head>
+  <body>
+    <!-- header --- void -->
+    <header></header>
+
+    <main>
+      <h1 class="text-gradient gradient-orange">Génération de facture</h1>
+
+      <!-- éméteur form -->
+      <section>
+        <h2 class="rounded-shadow-box">&Eacute;méteur</h2>
+
+        <form class="flex justify-between flex-wrap" id="issuerForm">
+          <label class="w-50 items-center"
+            >&Eacute;méteur existant:
+            <select></select
+          ></label>
+          <div class="w-50">
+            <h3>Créer un nouvel éméteur</h3>
+            <div class="form-grid">
+              <label>Nom:</label><input /> <label>Adresse:</label><input />
+              <label>Code postal:</label><input /> <label>Ville:</label
+              ><input /> <label>Pays:</label><input /> <label>Tel:</label
+              ><input /> <label>E-mail:</label><input />
+              <label>Site internet:</label><input />
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-confirm">Valider</button>
+            <button type="reset" class="btn btn-alert">Annuler</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- destinataire form -->
+      <section>
+        <h2 class="rounded-shadow-box">Destinataire</h2>
+
+        <form class="flex justify-between flex-wrap" id="clientForm">
+          <label class="w-50 items-center"
+            >Destinataire existant:
+            <select></select
+          ></label>
+          <div class="w-50">
+            <h3>Créer un nouveau destinataire</h3>
+            <div class="form-grid">
+              <label>Nom:</label><input /> <label>Adresse:</label><input />
+              <label>Code postal:</label><input /> <label>Ville:</label
+              ><input /> <label>Pays:</label><input /> <label>Tel:</label
+              ><input /> <label>E-mail:</label><input />
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <button class="btn btn-confirm">Valider</button>
+            <button class="btn btn-alert">Annuler</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- facture form -->
+      <section>
+        <h2 class="rounded-shadow-box">Facture</h2>
+
+        <form class="flex justify-between flex-wrap" id="invoiceForm">
+          <label class="w-50 items-center"
+            >Facture existante:
+            <select></select
+          ></label>
+          <div class="w-50">
+            <h3>Créer une nouvelle facture</h3>
+            <div class="form-grid mb-4">
+              <label>intitulé 1:</label><input />
+            </div>
+            <div class="flex mb-4">
+              <div class="w-50 flex">
+                <label class="flew items-center"
+                  >heures:<input class="input-small"
+                /></label>
+              </div>
+              <div class="w-50 flex">
+                <label class="flew items-center"
+                  >taux:<input class="input-small"
+                /></label>
+              </div>
+            </div>
+            <div class="form-grid mb-4">
+              <label class="flew items-center">intitulé 2:</label><input />
+            </div>
+            <div class="flex mb-4">
+              <div class="w-50 flex">
+                <label class="flew items-center"
+                  >heures:<input class="input-small"
+                /></label>
+              </div>
+              <div class="w-50 flex">
+                <label class="flew items-center"
+                  >taux:<input class="input-small"
+                /></label>
+              </div>
+            </div>
+            <div class="form-grid mb-4">
+              <label class="flew items-center">intitulé 3:</label><input />
+            </div>
+            <div class="flex mb-4">
+              <div class="w-50 flex">
+                <label class="flew items-center"
+                  >heures:<input class="input-small"
+                /></label>
+              </div>
+              <div class="w-50 flex">
+                <label class="flew items-center"
+                  >taux:<input class="input-small"
+                /></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <button class="btn btn-confirm">Valider</button>
+            <button class="btn btn-alert">Annuler</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- pdf -->
+      <section class="pdf-submit">
+        <button class="btn" id="pdfShow" data-action="show">
+          Visioner PDF
+        </button>
+        <button class="btn" id="pdfSave" data-action="save">
+          Enregister PDF
+        </button>
+      </section>
+    </main>
+
+    <!-- footer --- void -->
+    <footer></footer>
+
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="./src/scripts/app.js"></script>
+  </body>
+</html>
