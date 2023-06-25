@@ -1,4 +1,4 @@
-const handleForm = (elements) => {
+const handleFormPdf = (elements) => {
   const [issuerSelect, clientSelect, invoiceSelect] = elements;
 
   if (
@@ -6,15 +6,20 @@ const handleForm = (elements) => {
     clientSelect.value === "null" ||
     invoiceSelect.value === "null"
   )
-    return handleFormError(elements);
+    return handleFormError();
 
   return true;
 };
 
-const handleFormError = (elements) => {
-  const [issuerSelect, clientSelect, invoiceSelect] = elements;
+const handleForm = (values) => {
+  if (values.find((value) => value === "") !== undefined)
+    return handleFormError();
 
+  return true;
+};
+
+const handleFormError = () => {
   return false;
 };
 
-export default handleForm;
+export { handleFormPdf, handleForm };

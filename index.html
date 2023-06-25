@@ -25,17 +25,24 @@
           <div class="w-50">
             <h3>Créer un nouvel éméteur</h3>
             <div class="form-grid">
-              <label>Nom:</label><input /> <label>Adresse:</label><input />
-              <label>Code postal:</label><input /> <label>Ville:</label
-              ><input /> <label>Pays:</label><input /> <label>Tel:</label
-              ><input /> <label>E-mail:</label><input />
-              <label>Site internet:</label><input />
+              <label>Nom:</label><input name="name" /> <label>Adresse:</label
+              ><input name="address" /> <label>Code postal:</label
+              ><input name="postal_code" /> <label>Ville:</label
+              ><input name="city" /> <label>Pays:</label
+              ><input name="country" /> <label>Tel:</label
+              ><input name="phone" /> <label>E-mail:</label
+              ><input name="email" /> <label>Site internet:</label
+              ><input name="website" />
             </div>
           </div>
 
           <div class="form-submit">
-            <button type="submit" class="btn btn-confirm">Valider</button>
-            <button type="reset" class="btn btn-alert">Annuler</button>
+            <button type="submit" class="btn btn-confirm" form="issuerForm">
+              Valider
+            </button>
+            <button type="reset" class="btn btn-alert" form="issuerForm">
+              Annuler
+            </button>
           </div>
         </form>
       </section>
@@ -60,8 +67,12 @@
           </div>
 
           <div class="form-submit">
-            <button class="btn btn-confirm">Valider</button>
-            <button class="btn btn-alert">Annuler</button>
+            <button type="submit" class="btn btn-confirm" form="clientForm">
+              Valider
+            </button>
+            <button type="reset" class="btn btn-alert" form="clientForm">
+              Annuler
+            </button>
           </div>
         </form>
       </section>
@@ -125,8 +136,12 @@
           </div>
 
           <div class="form-submit">
-            <button class="btn btn-confirm">Valider</button>
-            <button class="btn btn-alert">Annuler</button>
+            <button type="submit" class="btn btn-confirm" form="invoiceForm">
+              Valider
+            </button>
+            <button type="reset" class="btn btn-alert" form="invoiceForm">
+              Annuler
+            </button>
           </div>
         </form>
       </section>
@@ -146,8 +161,16 @@
     <footer></footer>
 
     <!-- scripts -->
+    <!-- jspdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- jspdf-autotable -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- firebase - firestore -->
+    <script type="module" src="./src/libs/firebase-config.js"></script>
+
+    <!-- app.js -->
     <script type="module" src="./src/scripts/app.js"></script>
+    <!-- <script type="module" src="./src/libs/firebase-config.js"></script> -->
   </body>
 </html>

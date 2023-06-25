@@ -1,7 +1,9 @@
 import getDataAndElements from "./getDataAndElements.js";
 import populateSelects from "../libs/populateSelects.js";
 import handlePdf from "../libs/handlePdf.js";
-import handleForm from "../libs/handleForm.js";
+import { handleFormPdf, handleForm } from "../libs/handleForm.js";
+import { formatData } from "../libs/formatData.js";
+import { postData } from "../libs/handleData.js";
 
 /* -------------- */
 /* INIT APP START */
@@ -28,7 +30,7 @@ populateSelects(
 /* listen showPdf and SavePdf */
 const handlePdfListener = (event) => {
   /* check all select got value - return true / false */
-  const isFormValid = handleForm([
+  const isFormValid = handleFormPdf([
     issuer.select,
     client.select,
     invoice.select,
@@ -50,9 +52,40 @@ const handlePdfListener = (event) => {
   ]);
 };
 
+/* listen for reset form */
+const resetForm = (event) => {
+  event.preventDefault();
+
+  event.target.form.reset();
+};
+
+/* listen for submit */
+const submitForm = (event) => {
+  event.preventDefault();
+
+  const form = document.querySelector(`#${event.target.form.id}`);
+  const inputs = [
+    ...document.querySelectorAll(`#${event.target.form.id} input`),
+  ];
+  const values = [...inputs].map((input) => input.value);
+
+  const isFormValid = handleForm(values);
+  if (!isFormValid) return;
+
+  const data = formatData(inputs, form.id);
+  postData(data, form.id);
+};
+
 pdfSave.addEventListener("click", handlePdfListener);
 pdfShow.addEventListener("click", handlePdfListener);
 
+Array(issuer.reset, client.reset, invoice.reset).forEach((el) => {
+  el.addEventListener("click", resetForm);
+});
+
+Array(issuer.submit, client.submit, invoice.submit).forEach((el) => {
+  el.addEventListener("click", submitForm);
+});
 /* ----------------- */
 /* SUBMIT HANDLE END */
 /* ----------------- */

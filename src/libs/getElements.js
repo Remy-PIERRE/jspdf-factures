@@ -28,9 +28,8 @@ const getAllSelects = () => {
 
 /* SUBMIT according form */
 const getSubmit = (name) => {
-  const element = document.querySelector(
-    `#${name}Form button[type = 'submit']`
-  );
+  const element = document.querySelector(`#${name}Form button[type='submit']`);
+  return element;
 };
 
 const getAllSubmit = () => {
@@ -43,7 +42,8 @@ const getAllSubmit = () => {
 
 /* RESET according form */
 const getReset = (name) => {
-  const element = document.querySelector(`#${name}Form button[type = 'reset']`);
+  const element = document.querySelector(`#${name}Form button[type='reset']`);
+  return element;
 };
 
 const getAllReset = () => {
