@@ -1,0 +1,17 @@
+[
+  {
+    "id": "invoice",
+    "name": "Facture",
+    "categories": ["issuer", "client", "invoice"]
+  },
+  {
+    "id": "test_1",
+    "name": "Test 1",
+    "categories": ["issuer", "issuer", "issuer"]
+  },
+  {
+    "id": "test_2",
+    "name": "Test 2 - text longueur",
+    "categories": ["issuer", "client", "invoice"]
+  }
+]

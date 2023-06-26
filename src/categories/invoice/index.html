@@ -1,0 +1,33 @@
+<section id="invoice">
+  <section class="flex flex-wrap justify-center category__section">
+    <h2>Facture</h2>
+    <form
+      class="flex flex-col justify-center items-center category__section__form"
+    >
+      <label>Séléctionner une facture existante:</label>
+      <select></select>
+    </form>
+
+    <div
+      class="flex flex-col justify-center items-center category__section__create"
+    >
+      <label>Créer une nouvelle facture:</label>
+      <button type="button" class="btn">Créer</button>
+    </div>
+  </section>
+
+  <section id="invoiceModal" class="hidden category__modal">
+    <div class="flex justify-center items-center category__modal__wrapper">
+      <div class="flex flex-col items-center category__modal__content">
+        <h3>Nouvelle facture</h3>
+
+        <form id="invoiceForm" class="flex flex-col category__modal__form">
+          <div>
+            <button type="reset">Annuler</button>
+            <button type="submit">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>

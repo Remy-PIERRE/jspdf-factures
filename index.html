@@ -7,170 +7,23 @@
     <link rel="stylesheet" href="./styles/global.css" />
   </head>
   <body>
-    <!-- header --- void -->
-    <header></header>
+    <!-- HEADER -->
+    <header>
+      <form id="modelForm" class="form__models">
+        <label>Séléction du model de PDF :</label>
+        <select></select>
 
-    <main>
-      <h1 class="text-gradient gradient-orange">Génération de facture</h1>
-
-      <!-- éméteur form -->
-      <section>
-        <h2 class="rounded-shadow-box">&Eacute;méteur</h2>
-
-        <form class="flex justify-between flex-wrap" id="issuerForm">
-          <label class="w-50 items-center"
-            >&Eacute;méteur existant:
-            <select></select
-          ></label>
-          <div class="w-50">
-            <h3>Créer un nouvel éméteur</h3>
-            <div class="form-grid">
-              <label>Nom:</label><input name="name" /> <label>Adresse:</label
-              ><input name="address" /> <label>Code postal:</label
-              ><input name="postal_code" /> <label>Ville:</label
-              ><input name="city" /> <label>Pays:</label
-              ><input name="country" /> <label>Tel:</label
-              ><input name="phone" /> <label>E-mail:</label
-              ><input name="email" /> <label>Site internet:</label
-              ><input name="website" />
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="btn btn-confirm" form="issuerForm">
-              Valider
-            </button>
-            <button type="reset" class="btn btn-alert" form="issuerForm">
-              Annuler
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <!-- destinataire form -->
-      <section>
-        <h2 class="rounded-shadow-box">Destinataire</h2>
-
-        <form class="flex justify-between flex-wrap" id="clientForm">
-          <label class="w-50 items-center"
-            >Destinataire existant:
-            <select></select
-          ></label>
-          <div class="w-50">
-            <h3>Créer un nouveau destinataire</h3>
-            <div class="form-grid">
-              <label>Nom:</label><input /> <label>Adresse:</label><input />
-              <label>Code postal:</label><input /> <label>Ville:</label
-              ><input /> <label>Pays:</label><input /> <label>Tel:</label
-              ><input /> <label>E-mail:</label><input />
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="btn btn-confirm" form="clientForm">
-              Valider
-            </button>
-            <button type="reset" class="btn btn-alert" form="clientForm">
-              Annuler
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <!-- facture form -->
-      <section>
-        <h2 class="rounded-shadow-box">Facture</h2>
-
-        <form class="flex justify-between flex-wrap" id="invoiceForm">
-          <label class="w-50 items-center"
-            >Facture existante:
-            <select></select
-          ></label>
-          <div class="w-50">
-            <h3>Créer une nouvelle facture</h3>
-            <div class="form-grid mb-4">
-              <label>intitulé 1:</label><input />
-            </div>
-            <div class="flex mb-4">
-              <div class="w-50 flex">
-                <label class="flew items-center"
-                  >heures:<input class="input-small"
-                /></label>
-              </div>
-              <div class="w-50 flex">
-                <label class="flew items-center"
-                  >taux:<input class="input-small"
-                /></label>
-              </div>
-            </div>
-            <div class="form-grid mb-4">
-              <label class="flew items-center">intitulé 2:</label><input />
-            </div>
-            <div class="flex mb-4">
-              <div class="w-50 flex">
-                <label class="flew items-center"
-                  >heures:<input class="input-small"
-                /></label>
-              </div>
-              <div class="w-50 flex">
-                <label class="flew items-center"
-                  >taux:<input class="input-small"
-                /></label>
-              </div>
-            </div>
-            <div class="form-grid mb-4">
-              <label class="flew items-center">intitulé 3:</label><input />
-            </div>
-            <div class="flex mb-4">
-              <div class="w-50 flex">
-                <label class="flew items-center"
-                  >heures:<input class="input-small"
-                /></label>
-              </div>
-              <div class="w-50 flex">
-                <label class="flew items-center"
-                  >taux:<input class="input-small"
-                /></label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="btn btn-confirm" form="invoiceForm">
-              Valider
-            </button>
-            <button type="reset" class="btn btn-alert" form="invoiceForm">
-              Annuler
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <!-- pdf -->
-      <section class="pdf-submit">
-        <button class="btn" id="pdfShow" data-action="show">
-          Visioner PDF
+        <button type="submit" form="modelForm" class="btn form__models__submit">
+          Valider
         </button>
-        <button class="btn" id="pdfSave" data-action="save">
-          Enregister PDF
-        </button>
-      </section>
-    </main>
+      </form>
+    </header>
 
-    <!-- footer --- void -->
-    <footer></footer>
+    <section id="pdfWrapper" class="hidden flex justify-center pdf__wrapper">
+      <button type="show" class="btn btn-pdf button-larger">Visualiser</button>
+      <button type="save" class="btn btn-pdf button-larger">Télécharger</button>
+    </section>
 
-    <!-- scripts -->
-    <!-- jspdf -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- jspdf-autotable -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-
-    <!-- firebase - firestore -->
-    <script type="module" src="./src/libs/firebase-config.js"></script>
-
-    <!-- app.js -->
-    <script type="module" src="./src/scripts/app.js"></script>
-    <!-- <script type="module" src="./src/libs/firebase-config.js"></script> -->
+    <script type="module" src="./src/app.js"></script>
   </body>
 </html>
