@@ -1,5 +1,6 @@
 import { getDataFromJson, getDataFromHtml } from "./scripts/getData.js";
 import { populateSelect } from "./scripts/populateElement.js";
+import createPdf from "./scripts/handlePdf.js";
 
 /* --------------- */
 /* INSTANCES START */
@@ -12,6 +13,7 @@ import { populateSelect } from "./scripts/populateElement.js";
     submit: <button />,
     title: <h1 />,
 } */
+/* contain data with all pdf model created and html elements to choice wich one to work with */
 const model = {};
 
 /* pdf = {
@@ -19,11 +21,13 @@ const model = {};
     show: <button />,
     save: <button />,
 } */
+/* contain html element allowing to watch or download pdf */
 const pdf = {};
 
 /* categories = [
-    {
+    category :{
         name: str,
+        data: [...str],
         body: modale: <section />,
         select: <select />,
         create: <button />,
@@ -31,8 +35,9 @@ const pdf = {};
         form: <form />,
         reset: <button />,
         submit: <button />,
-    }
+    },
 ] */
+/* contain all categories (data and html elements) needed to select or create dynamiques data allowing to build pdf model selected */
 const categories = [];
 
 /* ------------- */
@@ -52,7 +57,7 @@ model.submit.addEventListener("click", handleModelSubmit);
 /* */
 /* */
 async function initModel() {
-  /* populate model */
+  /* populate model object */
   await createModel();
 
   /* populate model.select according to model.data */
@@ -78,8 +83,7 @@ async function handleModelSubmit(event) {
   event.preventDefault();
 
   /* default value handle when submit */
-  if (event.target.value === "null")
-    return console.log("Please select a model");
+  // if (event.target.value) return console.log("Please select a model"); /// break
 
   /* nothing to do when select again model.current */
   if (model.current && model.current.id === model.select.value) return;
@@ -182,7 +186,6 @@ function resetCategories() {
 /* */
 /* */
 /* */
-
 function handleEventOnCategory(category) {
   /* open modal */
   /* close modal */
@@ -229,6 +232,24 @@ function handleEventOnCategory(category) {
   }
 }
 
+/* */
+/* */
+/* */
+function getCategoriesSelectedData() {
+  const values = categories.map((category) => category.select.value);
+  if (values.includes("null"))
+    return { success: false, message: "All categories must be selected" };
+
+  const data = values.map((value, ind) => {
+    return {
+      name: model.current.categories[ind],
+      data: categories[ind].data.find((el) => el.id === value),
+    };
+  });
+
+  return { success: true, data };
+}
+
 /* -------------- */
 /* CATEGORIES END */
 /* -------------- */
@@ -241,8 +262,40 @@ function initPdf() {
   if (!pdf.wrapper) {
     pdf.wrapper = document.querySelector("#pdfWrapper");
     pdf.wrapper.classList.toggle("hidden");
-    pdf.show = pdf.wrapper.querySelector("button[type=show]");
-    pdf.save = pdf.wrapper.querySelector("button[type=save]");
+    pdf.show = pdf.wrapper.querySelector("button[data-type=show]");
+    pdf.save = pdf.wrapper.querySelector("button[data-type=save]");
+  }
+
+  handleEvventOnPdf();
+}
+
+/* */
+/* */
+/* */
+function handleEvventOnPdf() {
+  /* show pdf */
+  /* save pdf */
+
+  /* */
+  /* */
+  /* */
+  pdf.show.addEventListener("click", showPdf);
+
+  function showPdf(event) {
+    const resp = getCategoriesSelectedData();
+    if (!resp.success) return console.log(resp.message);
+    createPdf(resp.data, model.current.id, event.target.dataset.type);
+  }
+
+  /* */
+  /* */
+  /* */
+  pdf.save.addEventListener("click", savePdf);
+
+  function savePdf() {
+    const resp = getCategoriesSelectedData();
+    if (!resp.success) return console.log(resp.message);
+    createPdf(resp.data, model.current.id, event.target.dataset.type);
   }
 }
 

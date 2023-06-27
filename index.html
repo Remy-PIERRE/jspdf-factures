@@ -19,11 +19,21 @@
       </form>
     </header>
 
+    <!-- PDF HANDLE --- HIDDEN -->
     <section id="pdfWrapper" class="hidden flex justify-center pdf__wrapper">
-      <button type="show" class="btn btn-pdf button-larger">Visualiser</button>
-      <button type="save" class="btn btn-pdf button-larger">Télécharger</button>
+      <button data-type="show" class="btn btn-pdf button-larger">
+        Visualiser
+      </button>
+      <button data-type="save" class="btn btn-pdf button-larger">
+        Télécharger
+      </button>
     </section>
 
+    <!-- jspdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- jspdf-autotable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <!-- main -->
     <script type="module" src="./src/app.js"></script>
   </body>
 </html>
