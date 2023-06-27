@@ -16,6 +16,15 @@
         <button type="submit" form="modelForm" class="btn form__models__submit">
           Valider
         </button>
+
+        <button
+          type="button"
+          data-type="create"
+          form="modelForm"
+          class="btn form__models__submit"
+        >
+          Créer
+        </button>
       </form>
     </header>
 
@@ -29,10 +38,58 @@
       </button>
     </section>
 
+    <!-- create model modal --- hidden  -->
+    <section id="modelModal" class="hidden category__modal">
+      <div class="flex justify-center items-center category__modal__wrapper">
+        <div class="flex flex-col items-center category__modal__content">
+          <h3>Création d'un modele</h3>
+
+          <form id="modelForm_2" class="flex flex-col category__modal__form">
+            <div class="category__modal__input">
+              <label for="id">Id:</label>
+              <input type="text" name="id" />
+            </div>
+
+            <div class="category__modal__input">
+              <label for="name">Nom:</label>
+              <input type="text" name="name" />
+            </div>
+
+            <div class="category__modal__inputs">
+              <h4>Catégories</h4>
+              <div class="category__modal__input">
+                <label for="category_1">1:</label>
+                <input type="text" name="category_1" data-name="category" />
+              </div>
+              <div class="category__modal__input">
+                <label for="category_2">2:</label>
+                <input type="text" name="category_2" data-name="category" />
+              </div>
+              <div class="category__modal__input">
+                <label for="category_3">3:</label>
+                <input type="text" name="category_3" data-name="category" />
+              </div>
+              <div class="category__modal__input">
+                <label for="category_4">4:</label>
+                <input type="text" name="category_4" data-name="category" />
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end category__modal__submit">
+              <button type="reset">Annuler</button>
+              <button type="submit">Valider</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- jspdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- jspdf-autotable -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <!-- firebase - firestore -->
+    <script type="module" src="./src/libs/firebase-config.js"></script>
     <!-- main -->
     <script type="module" src="./src/app.js"></script>
   </body>

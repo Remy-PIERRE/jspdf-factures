@@ -1,3 +1,15 @@
+import { db } from "../libs/firebase-config.js";
+import {
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  updateDoc,
+  query,
+  where,
+  serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
 const getDataFromJson = async (path) => {
   try {
     const resp = await fetch(`/public/json/${path}s.json`);
@@ -9,6 +21,8 @@ const getDataFromJson = async (path) => {
 };
 
 const getDataFromHtml = async (path) => {
+  // if (!path) return;
+
   const parser = new DOMParser();
 
   try {
@@ -22,4 +36,15 @@ const getDataFromHtml = async (path) => {
   }
 };
 
-export { getDataFromJson, getDataFromHtml };
+const getDataFromDB = async (collectionName) => {
+  const querySnapshot = await getDocs(collection(db, collectionName));
+
+  const data = [];
+  querySnapshot.forEach((element) => {
+    data.push(element.data());
+  });
+
+  return data;
+};
+
+export { getDataFromJson, getDataFromHtml, getDataFromDB };

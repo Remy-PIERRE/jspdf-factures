@@ -1,6 +1,11 @@
-import { getDataFromJson, getDataFromHtml } from "./scripts/getData.js";
+import {
+  getDataFromJson,
+  getDataFromHtml,
+  getDataFromDB,
+} from "./scripts/getData.js";
 import { populateSelect } from "./scripts/populateElement.js";
 import createPdf from "./scripts/handlePdf.js";
+import { postData, postModel } from "./scripts/postData.js";
 
 /* --------------- */
 /* INSTANCES START */
@@ -12,6 +17,11 @@ import createPdf from "./scripts/handlePdf.js";
     select: <select />,
     submit: <button />,
     title: <h1 />,
+    create: <button />,
+    modal: <section />,
+    form: <form />,
+    reset: <button />,
+    post: <button />,
 } */
 /* contain data with all pdf model created and html elements to choice wich one to work with */
 const model = {};
@@ -52,6 +62,10 @@ const categories = [];
 /* on submit => categories reset if needed, pdf init if needed, categories init */
 await initModel();
 model.submit.addEventListener("click", handleModelSubmit);
+model.create.addEventListener("click", openCreateModelModal);
+model.modal.addEventListener("click", closeCreateModelModal);
+model.reset.addEventListener("click", resetCreateModelModal);
+model.post.addEventListener("click", postCreateModelModal);
 
 /* */
 /* */
@@ -63,16 +77,26 @@ async function initModel() {
   /* populate model.select according to model.data */
   populateSelect(model.select, model.data);
 
+  console.log("model", model);
+
   /* */
   /* */
   /* */
   async function createModel() {
     /* get data from json models.json */
-    model.data = await getDataFromJson("model");
+    // model.data = await getDataFromJson("model");
+    model.data = await getDataFromDB("model");
 
     /* get elements */
     model.select = document.querySelector("#modelForm select");
     model.submit = document.querySelector("#modelForm button[type=submit]");
+    model.create = document.querySelector(
+      "#modelForm button[data-type=create]"
+    );
+    model.modal = document.querySelector("#modelModal");
+    model.form = document.querySelector("#modelForm_2");
+    model.reset = document.querySelector("#modelModal button[type=reset]");
+    model.post = document.querySelector("#modelModal button[type=submit]");
   }
 }
 
@@ -116,6 +140,61 @@ async function handleModelSubmit(event) {
 
     model.title.innerHTML = `Création du PDF ${model.current.name}`;
   }
+}
+
+/* */
+/* */
+/* */
+function openCreateModelModal() {
+  model.modal.classList.toggle("hidden");
+}
+
+/* */
+/* */
+/* */
+function closeCreateModelModal(event) {
+  if ([...event.target.classList].includes("category__modal__wrapper"))
+    model.modal.classList.toggle("hidden");
+}
+
+/* */
+/* */
+/* */
+function resetCreateModelModal() {
+  model.form.reset();
+}
+
+/* */
+/* */
+/* */
+async function postCreateModelModal(event) {
+  event.preventDefault();
+
+  /* get from values */
+  const idValue = model.form.querySelector("input[name=id]").value;
+  const nameValue = model.form.querySelector("input[name=name]").value;
+  const categoriesValue = [
+    ...model.form.querySelectorAll("input[data-name=category]"),
+  ].map((element) => element.value !== "" && element.value);
+
+  /* id, name, 1 or more category required */
+  if (!idValue || !nameValue || categoriesValue.length < 1)
+    return console.log("Id, name and at last 1 category required");
+
+  /* clean categories */
+  const cleanCategoriesValue = categoriesValue.filter(
+    (value) => value !== false
+  );
+
+  /* post new model */
+  await postModel({
+    id: idValue,
+    name: nameValue,
+    categories: categoriesValue,
+  });
+
+  /* close modal */
+  model.modal.classList.toggle("hidden");
 }
 
 /* --------- */
@@ -225,10 +304,36 @@ function handleEventOnCategory(category) {
   /* */
   category.submit.addEventListener("click", submitCategoryForm);
 
-  function submitCategoryForm(event) {
+  async function submitCategoryForm(event) {
     event.preventDefault();
 
-    console.log("need firebase --- under construction");
+    /* get inputs values = [
+      ...{
+        key: input.name,
+        value: input.value,
+      }
+    ] */
+    const values = [...category.form.querySelectorAll("input")].map((input) => {
+      return {
+        key: input.name,
+        value: input.value,
+      };
+    });
+
+    /* create data object according inputs values = {
+      ... key: value,
+    } */
+    const data = Object.assign(
+      {},
+      ...values.map((item) => ({ [item.key]: item.value }))
+    );
+
+    /* all inputs required */
+    if (values.find((value) => value.value === ""))
+      return console.log("All categories are required", values);
+
+    await postData(category.name, data);
+    category.modal.classList.toggle("hidden");
   }
 }
 
