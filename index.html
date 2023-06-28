@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- HEADER -->
-    <header>
+    <header id="model">
       <form id="modelForm" class="form__models">
         <label>Séléction du model de PDF :</label>
         <select></select>
@@ -28,8 +28,11 @@
       </form>
     </header>
 
+    <!-- Title --- hidden -->
+    <h1 id="title" class="hidden model__title">Création du PDF</h1>
+
     <!-- PDF HANDLE --- HIDDEN -->
-    <section id="pdfWrapper" class="hidden flex justify-center pdf__wrapper">
+    <section id="docWrapper" class="hidden flex justify-center pdf__wrapper">
       <button data-type="show" class="btn btn-pdf button-larger">
         Visualiser
       </button>
@@ -55,7 +58,7 @@
               <input type="text" name="name" />
             </div>
 
-            <div class="category__modal__inputs">
+            <div class="category__modal__inputs" data-subcategory="categories">
               <h4>Catégories</h4>
               <div class="category__modal__input">
                 <label for="category_1">1:</label>
@@ -91,6 +94,6 @@
     <!-- firebase - firestore -->
     <script type="module" src="./src/libs/firebase-config.js"></script>
     <!-- main -->
-    <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src__/app.js"></script>
   </body>
 </html>

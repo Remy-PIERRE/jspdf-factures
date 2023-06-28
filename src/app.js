@@ -77,8 +77,6 @@ async function initModel() {
   /* populate model.select according to model.data */
   populateSelect(model.select, model.data);
 
-  console.log("model", model);
-
   /* */
   /* */
   /* */

@@ -1,0 +1,128 @@
+<section id="invoice">
+  <section class="flex flex-wrap justify-center category__section">
+    <h2>Facture</h2>
+    <form
+      class="flex flex-col justify-center items-center category__section__form"
+    >
+      <label>Séléctionner une facture existante:</label>
+      <select></select>
+    </form>
+
+    <div
+      class="flex flex-col justify-center items-center category__section__create"
+    >
+      <label>Créer une nouvelle facture:</label>
+      <button data-type="create" class="btn">Créer</button>
+    </div>
+  </section>
+
+  <section id="invoiceModal" class="hidden category__modal">
+    <div class="flex justify-center items-center category__modal__wrapper">
+      <div class="flex flex-col items-center category__modal__content">
+        <h3>Nouvelle facture</h3>
+
+        <form id="invoiceForm" class="flex flex-col category__modal__form">
+          <div class="category__modal__input">
+            <label for="id">Numero id:</label>
+            <input type="text" name="id" />
+          </div>
+
+          <div class="category__modal__input">
+            <label for="total">Total:</label>
+            <input type="text" name="total" />
+          </div>
+
+          <div class="category__modal__input">
+            <label for="date">Date:</label>
+            <input type="text" name="date" />
+          </div>
+
+          <div
+            class="category__modal__inputs flex-row flex-wrap justify-between"
+            data-subCategory="details"
+            data-typeOfValue="arrayofobject"
+          >
+            <h4>Actions</h4>
+
+            <div
+              class="category__modal__inputs"
+              data-subCategory="action_1"
+              data-typeOfValue="object"
+            >
+              <h4 class="heading-small">Action 1</h4>
+              <div class="category__modal__input">
+                <label for="name">Nom:</label>
+                <input type="text" name="name" />
+              </div>
+              <div class="category__modal__input">
+                <label for="description">Commentaire:</label>
+                <input type="text" name="description" />
+              </div>
+              <div class="category__modal__input">
+                <label for="unitPrice">Prix unitaire:</label>
+                <input type="text" name="unitPrice" />
+              </div>
+              <div class="category__modal__input">
+                <label for="quantity">Nombre:</label>
+                <input type="text" name="quantity" />
+              </div>
+            </div>
+
+            <div
+              class="category__modal__inputs"
+              data-subCategory="action_2"
+              data-typeOfValue="object"
+            >
+              <h4 class="heading-small">Action 2</h4>
+              <div class="category__modal__input">
+                <label for="name">Nom:</label>
+                <input type="text" name="name" />
+              </div>
+              <div class="category__modal__input">
+                <label for="description">Commentaire:</label>
+                <input type="text" name="description" />
+              </div>
+              <div class="category__modal__input">
+                <label for="unitPrice">Prix unitaire:</label>
+                <input type="text" name="unitPrice" />
+              </div>
+              <div class="category__modal__input">
+                <label for="quantity">Nombre:</label>
+                <input type="text" name="quantity" />
+              </div>
+            </div>
+
+            <div
+              class="category__modal__inputs"
+              data-subCategory="action_3"
+              data-typeOfValue="object"
+            >
+              <h4 class="heading-small">Action 3</h4>
+              <div class="category__modal__input">
+                <label for="name">Nom:</label>
+                <input type="text" name="name" />
+              </div>
+              <div class="category__modal__input">
+                <label for="description">Commentaire:</label>
+                <input type="text" name="description" />
+              </div>
+              <div class="category__modal__input">
+                <label for="unitPrice">Prix unitaire:</label>
+                <input type="text" name="unitPrice" />
+              </div>
+              <div class="category__modal__input">
+                <label for="quantity">Nombre:</label>
+                <input type="text" name="quantity" />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end category__modal__submit">
+            <button type="reset">Annuler</button>
+            <button type="submit">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>
