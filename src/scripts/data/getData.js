@@ -1,4 +1,4 @@
-import { db } from "../utils/firebase-config.js";
+import { db } from "../../utils/firebase-config.js";
 import {
   collection,
   getDocs,
@@ -9,7 +9,7 @@ import {
 /* */
 const getDataFromJson = async (fileName) => {
   try {
-    const resp = await fetch(`/public/json/${fileName}.json`);
+    const resp = await fetch(`/public/json/${fileName}s.json`);
     const data = await resp.json();
 
     return data;
@@ -26,7 +26,7 @@ const getDataFromHTML = async (fileName) => {
 
   try {
     /* TODO - replace src__ by scr when refocto finished */
-    const resp = await fetch(`/src__/categories/${fileName}/index.html`);
+    const resp = await fetch(`/src/categories/${fileName}/index.html`);
     const textResp = await resp.text();
     const htmlResp = parser.parseFromString(textResp, "text/html");
 
@@ -47,4 +47,7 @@ const getDataFromDB = async (collectionName) => {
   return data;
 };
 
+/* */
+/* */
+/* */
 export { getDataFromJson, getDataFromHTML, getDataFromDB };

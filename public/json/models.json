@@ -12,6 +12,6 @@
   {
     "id": "test_2",
     "name": "Test 2 - text longueur",
-    "categories": ["issuer", "client", "invoice"]
+    "categories": ["issuer"]
   }
 ]

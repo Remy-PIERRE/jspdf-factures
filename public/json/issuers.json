@@ -4,13 +4,13 @@
     "name": "Jean-Fréderic Vincent",
     "adress": {
       "street": "1 avenue inconnue",
-      "cp": "10000",
+      "postal_code": "10000",
       "city": "Quelque part",
       "country": "France"
     },
-    "tel": "(+33)6 01 02 03 04",
+    "phone": "(+33)6 01 02 03 04",
     "email": "email@exemple.com",
-    "url": "https://unsiteparexemple.com",
+    "website": "https://unsiteparexemple.com",
     "images": {
       "name": "sevenValley_name.png",
       "logo": "sevenValley_logo.png",
@@ -22,13 +22,13 @@
     "name": "Rémy Pierre",
     "adress": {
       "street": "1 avenue inconnue",
-      "cp": "10000",
+      "postal_code": "10000",
       "city": "Quelque part",
       "country": "France"
     },
-    "tel": "(+33)6 01 02 03 04",
+    "phone": "(+33)6 01 02 03 04",
     "email": "email@exemple.com",
-    "url": "https://unsiteparexemple.com",
+    "website": "https://unsiteparexemple.com",
     "images": {
       "name": "sevenValley_name.png",
       "logo": "sevenValley_logo.png",

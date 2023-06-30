@@ -2,34 +2,37 @@
   {
     "id": "1",
     "name": "Société truc",
-    "adresse": {
+    "adress": {
       "street": "123 street name",
-      "cp": "01234",
-      "city": "La grande ville"
+      "postal_code": "01234",
+      "city": "La grande ville",
+      "country": "France"
     },
-    "tel": "(+33)6 01 02 03 04",
+    "phone": "(+33)6 01 02 03 04",
     "email": "entreprise@email.com"
   },
   {
     "id": "2",
     "name": "Société machin",
-    "adresse": {
+    "adress": {
       "street": "123 street name",
-      "cp": "01234",
-      "city": "La grande ville"
+      "postal_code": "01234",
+      "city": "La grande ville",
+      "country": "France"
     },
-    "tel": "(+33)6 01 02 03 04",
+    "phone": "(+33)6 01 02 03 04",
     "email": "entreprise@email.com"
   },
   {
     "id": "3",
     "name": "Société bidule",
-    "adresse": {
+    "adress": {
       "street": "123 street name",
-      "cp": "01234",
-      "city": "La grande ville"
+      "postal_code": "01234",
+      "city": "La grande ville",
+      "country": "France"
     },
-    "tel": "(+33)6 01 02 03 04",
+    "phone": "(+33)6 01 02 03 04",
     "email": "entreprise@email.com"
   }
 ]

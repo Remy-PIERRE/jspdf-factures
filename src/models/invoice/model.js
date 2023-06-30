@@ -1,11 +1,18 @@
 const generateInvoicePdf = (doc, data) => {
-  const issuer = data.find((el) => el.name === "issuer").data;
-  const client = data.find((el) => el.name === "client").data;
-  const invoice = data.find((el) => el.name === "invoice").data;
+  const { issuer, client, invoice } = data;
 
-  console.log("issuer", issuer);
-  console.log("client", client);
-  console.log("invoice", invoice);
+  // console.log("issuer", issuer);
+  // console.log("client", client);
+  // console.log("invoice", invoice);
+  console.log("the right model");
+
+  if (!issuer.images) {
+    issuer.images = {
+      name: "sevenValley_name.png",
+      logo: "sevenValley_logo.png",
+      signature: "sign_specimen.png",
+    };
+  }
 
   /* get custom font */
   doc.addFont("/public/font/AlegreyaSans-Medium.ttf", "AlegreyaSans", "normal");
@@ -29,12 +36,14 @@ const generateInvoicePdf = (doc, data) => {
   doc.setFont("AlegreyaSans", "normal");
   doc.setTextColor(0);
   doc.setFontSize(12);
+  console.log("issuer street", issuer.adress.street);
   doc.text(issuer.adress.street, header_x_r, header_y_r, {
     align: "right",
     baseline: "top",
   });
+  console.log("issuer cp city", issuer.adress.postal_code, issuer.adress.city);
   doc.text(
-    `${issuer.adress.cp}, ${issuer.adress.city}`,
+    `${issuer.adress.postal_code}, ${issuer.adress.city}`,
     header_x_r,
     header_y_r + 4,
     {
@@ -44,15 +53,18 @@ const generateInvoicePdf = (doc, data) => {
   );
 
   doc.setTextColor(100);
-  doc.text(issuer.tel, header_x_r - 7, header_y_r + 10, {
+  console.log("issuer phone", issuer.phone);
+  doc.text(issuer.phone, header_x_r - 7, header_y_r + 10, {
     align: "right",
     baseline: "top",
   });
+  console.log("issuer email", issuer.email);
   doc.text(issuer.email, header_x_r - 7, header_y_r + 15, {
     align: "right",
     baseline: "top",
   });
-  doc.text(issuer.url, header_x_r - 7, header_y_r + 20, {
+  console.log("issuer website", issuer.website);
+  doc.text(issuer.website, header_x_r - 7, header_y_r + 20, {
     align: "right",
     baseline: "top",
   });
@@ -85,6 +97,7 @@ const generateInvoicePdf = (doc, data) => {
   doc.setFont("AlegreyaSans", "bold");
   doc.setTextColor(0);
   doc.setFontSize(15);
+  console.log("client name", client.name);
   doc.text(client.name, invoice_header_x_l, invoice_header_y_l + 4.5, {
     baseline: "top",
   });
@@ -92,17 +105,19 @@ const generateInvoicePdf = (doc, data) => {
   doc.setFont("AlegreyaSans", "normal");
   doc.setTextColor(50);
   doc.setFontSize(12);
-  doc.text("\xC0 l'atention de :", invoice_header_x_l, invoice_header_y_l, {
+  doc.text("\xC0 l'attention de :", invoice_header_x_l, invoice_header_y_l, {
     baseline: "top",
   });
+  console.log("client street", client.adress.street);
   doc.text(
-    client.adresse.street,
+    client.adress.street,
     invoice_header_x_l,
     invoice_header_y_l + 10.5,
     { baseline: "top" }
   );
+  console.log("client cp, city", client.adress.postal_code, client.adress.city);
   doc.text(
-    `${client.adresse.cp}, ${client.adresse.city}`,
+    `${client.adress.postal_code}, ${client.adress.city}`,
     invoice_header_x_l,
     invoice_header_y_l + 14.5,
     {
@@ -111,9 +126,16 @@ const generateInvoicePdf = (doc, data) => {
   );
 
   doc.setTextColor(100);
-  doc.text(`tel:  ${client.tel}`, invoice_header_x_l, invoice_header_y_l + 20, {
-    baseline: "top",
-  });
+  console.log("client phone", client.phone);
+  doc.text(
+    `tel:  ${client.phone}`,
+    invoice_header_x_l,
+    invoice_header_y_l + 20,
+    {
+      baseline: "top",
+    }
+  );
+  console.log("client email", client.email);
   doc.text(
     `e-mail:  ${client.email}`,
     invoice_header_x_l,
@@ -171,7 +193,7 @@ const generateInvoicePdf = (doc, data) => {
     willDrawCell: (data) => {
       if (data.section === "body" && data.column.index === 3) {
         invoice_total_price +=
-          invoice.details[data.row.index].unitPrice *
+          invoice.details[data.row.index].unit_price *
           invoice.details[data.row.index].quantity;
       }
     },
@@ -180,6 +202,10 @@ const generateInvoicePdf = (doc, data) => {
       if (data.section === "body" && data.column.index === 0) {
         doc.setFontSize(15);
         doc.setTextColor(0, 0, 0, 1);
+        console.log(
+          "invoice details name",
+          invoice.details[data.row.index].name
+        );
         doc.text(
           invoice.details[data.row.index].name,
           data.cell.x + 16,
@@ -253,9 +279,9 @@ const generateInvoicePdf = (doc, data) => {
     ],
     body: invoice.details.map((e) => [
       e.description,
-      `\$${e.unitPrice}`,
+      `\$${e.unit_price}`,
       e.quantity,
-      `\$${+e.unitPrice * +e.quantity}`,
+      `\$${+e.unit_price * +e.quantity}`,
     ]),
   });
 
@@ -402,6 +428,7 @@ const generateInvoicePdf = (doc, data) => {
   doc.setFont("AlegreyaSans", "bold");
   doc.setTextColor(0);
   doc.setFontSize(15);
+  console.log("issuer name", issuer.name);
   doc.text(issuer.name, footer_x_r, footer_y_r + 5, {
     baseline: "top",
     align: "center",
